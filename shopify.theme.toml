@@ -1,0 +1,10 @@
+[environments.development]
+store = "playermkt.myshopify.com"
+password = "shptka_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+theme = ["development"]
+live_reload = true
+
+[environments.production]
+store = "playermkt.myshopify.com"
+password = "shptka_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+theme = ["live"]

@@ -1,0 +1,33 @@
+<div class="announcement-bar bg-gradient-to-r from-purple-400 to-purple-600 text-center py-2">
+  {% if section.settings.link != blank %}
+    <a href="{{ section.settings.link }}" class="text-white hover:opacity-90 transition-opacity">
+      {{ section.settings.text }}
+    </a>
+  {% else %}
+    <p class="text-white">{{ section.settings.text }}</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "🔥 Special offer: 20% off on all Diamond+ accounts!"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Announcement link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

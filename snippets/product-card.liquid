@@ -1,0 +1,58 @@
+<div class="account-card group">
+  <div class="relative overflow-hidden">
+    <!-- Main Image -->
+    <img src="{{ product.featured_image | img_url: '600x' }}" 
+         alt="{{ product.title }}" 
+         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+    
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+      <div class="absolute bottom-0 left-0 right-0 p-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="text-sm font-medium">{{ product.metafields.custom.champions }} Champions</span>
+            <span class="text-sm font-medium">{{ product.metafields.custom.skins }} Skins</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            {% if product.metafields.custom.server %}
+              <span class="px-2 py-1 rounded bg-[#1A1C23]/80 text-xs">{{ product.metafields.custom.server }}</span>
+            {% endif %}
+            {% if product.metafields.custom.rank %}
+              <span class="px-2 py-1 rounded bg-[#5865F2] text-xs">{{ product.metafields.custom.rank }}</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-4">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-medium truncate">{{ product.title }}</h3>
+      <div class="flex items-center space-x-2">
+        <span class="text-xl font-bold">{{ product.price | money_without_currency }}€</span>
+        {% if product.compare_at_price > product.price %}
+          <span class="text-sm text-gray-400 line-through">{{ product.compare_at_price | money_without_currency }}€</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 gap-2 mb-4">
+      <div class="bg-[#1A1C23] rounded p-2 text-center">
+        <span class="text-xs text-gray-400">Blue Essence</span>
+        <div class="text-sm font-medium">{{ product.metafields.custom.blue_essence }}</div>
+      </div>
+      <div class="bg-[#1A1C23] rounded p-2 text-center">
+        <span class="text-xs text-gray-400">Level</span>
+        <div class="text-sm font-medium">{{ product.metafields.custom.level }}</div>
+      </div>
+    </div>
+
+    <!-- Buy Button -->
+    <button class="w-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-medium py-2 rounded-lg transition-colors">
+      Buy Now
+    </button>
+  </div>
+</div>

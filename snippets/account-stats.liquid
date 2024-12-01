@@ -1,0 +1,29 @@
+<div class="account-stats grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+  {% if product.metafields.custom.win_rate %}
+    <div class="stat-card card p-4 text-center">
+      <span class="block text-sm text-gray-400 mb-1">Win Rate</span>
+      <span class="text-xl font-bold text-gradient">{{ product.metafields.custom.win_rate }}%</span>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.mastery_score %}
+    <div class="stat-card card p-4 text-center">
+      <span class="block text-sm text-gray-400 mb-1">Mastery Score</span>
+      <span class="text-xl font-bold text-gradient">{{ product.metafields.custom.mastery_score }}</span>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.honor_level %}
+    <div class="stat-card card p-4 text-center">
+      <span class="block text-sm text-gray-400 mb-1">Honor Level</span>
+      <span class="text-xl font-bold text-gradient">{{ product.metafields.custom.honor_level }}</span>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.blue_essence %}
+    <div class="stat-card card p-4 text-center">
+      <span class="block text-sm text-gray-400 mb-1">Blue Essence</span>
+      <span class="text-xl font-bold text-gradient">{{ product.metafields.custom.blue_essence }}</span>
+    </div>
+  {% endif %}
+</div>

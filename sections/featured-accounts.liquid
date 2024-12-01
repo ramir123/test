@@ -1,0 +1,60 @@
+<div class="py-16 bg-[#0B0E13]">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="text-xl text-gray-400">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for product in section.settings.featured_collection.products limit: 6 %}
+        <div class="animate-fade-in" style="animation-delay: {{ forloop.index | times: 0.2 }}s">
+          {% render 'product-card', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.featured_collection.all_products_count > 6 %}
+      <div class="text-center mt-12">
+        <a href="{{ section.settings.featured_collection.url }}" class="inline-block bg-[#5865F2] hover:bg-[#4752C4] text-white px-6 py-3 rounded-lg transition-colors">
+          View All Accounts
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Accounts",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Accounts"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Hand-picked premium accounts"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Featured Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Accounts",
+      "settings": {
+        "title": "Featured Accounts",
+        "subtitle": "Hand-picked premium accounts"
+      }
+    }
+  ]
+}
+{% endschema %}

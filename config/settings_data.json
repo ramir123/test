@@ -1,0 +1,47 @@
+{
+  "current": {
+    "colors_solid_button_labels": "#FFFFFF",
+    "colors_accent_1": "#6B21A8",
+    "colors_accent_2": "#9333EA",
+    "colors_background_1": "#18181B",
+    "colors_background_2": "#27272A",
+    "type_header_font": "rajdhani_n7",
+    "type_body_font": "inter_n4",
+    "social_twitter_link": "",
+    "social_facebook_link": "",
+    "social_instagram_link": "",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "text": "🔥 Special offer: 20% off on all Diamond+ accounts!",
+          "link": ""
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_width": 140,
+          "menu": "main-menu",
+          "show_line_separator": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "link_list",
+            "settings": {
+              "title": "Quick Links",
+              "menu": "footer"
+            }
+          }
+        },
+        "block_order": ["footer-0"],
+        "settings": {
+          "show_social": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+<div class="bg-[#0B0E13] py-24">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">More Than 97,000+<br>Gamers Trust Us</h2>
+      <div class="inline-flex items-center gap-1 bg-[#1A1C23] rounded-lg px-4 py-2">
+        <span class="text-green-500">Excellent</span>
+        <span class="text-white">4.9 out of 5.0</span>
+        <span class="text-gray-600 ml-auto">Based on 10,336 reviews</span>
+      </div>
+    </div>
+
+    <div class="swiper testimonials-slider">
+      <div class="swiper-wrapper">
+        {% for i in (1..9) %}
+          <div class="swiper-slide">
+            <div class="bg-[#1A1C23] rounded-lg p-6 border border-gray-800 hover:border-[#9370DB] transition-colors h-full">
+              <div class="flex items-start gap-4 mb-4">
+                <div class="w-12 h-12 rounded-full bg-[#2A2D36] flex items-center justify-center text-xl font-bold">
+                  A
+                </div>
+                <div>
+                  <h3 class="font-bold">Anonymous</h3>
+                  <p class="text-gray-400 text-sm">Unknown</p>
+                </div>
+                <div class="ml-auto">
+                  <div class="text-green-500">★</div>
+                </div>
+              </div>
+              <p class="text-gray-300">I tried many websites but GameBoost is definitely the best for me, awesome customer support, dashboard is perfect, every Booster that I had did amazing. I love this website</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination mt-8"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  new Swiper('.testimonials-slider', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    speed: 1000,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2
+      },
+      1024: {
+        slidesPerView: 3
+      }
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "XIIIV"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Lithuania"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "I tried many websites but GameBoost is definitely the best for me, awesome customer support, dashboard is perfect, every Booster that I had did amazing. I love this website"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

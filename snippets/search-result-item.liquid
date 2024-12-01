@@ -1,0 +1,30 @@
+<a href="{{ product.url }}" class="flex items-center gap-4 p-4 hover:bg-[#2A2D36] transition-colors">
+  <div class="w-16 h-16 flex-shrink-0">
+    <img src="{{ product.featured_image | img_url: '100x100', crop: 'center' }}"
+         alt="{{ product.title }}"
+         class="w-full h-full object-cover rounded">
+  </div>
+  <div class="flex-1 min-w-0">
+    <h4 class="font-medium text-white truncate">{{ product.title }}</h4>
+    <div class="flex items-center gap-2 mt-1">
+      {% if product.metafields.custom.rank %}
+        <span class="text-sm px-2 py-0.5 rounded bg-[#5865F2] text-white">
+          {{ product.metafields.custom.rank }}
+        </span>
+      {% endif %}
+      {% if product.metafields.custom.server %}
+        <span class="text-sm text-gray-400">
+          {{ product.metafields.custom.server }}
+        </span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="text-right">
+    <div class="font-bold text-[#5865F2]">{{ product.price | money }}</div>
+    {% if product.compare_at_price > product.price %}
+      <div class="text-sm text-gray-400 line-through">
+        {{ product.compare_at_price | money }}
+      </div>
+    {% endif %}
+  </div>
+</a>

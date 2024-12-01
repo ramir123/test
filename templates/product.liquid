@@ -1,0 +1,98 @@
+<div class="page-width">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 py-16">
+    <div class="space-y-6">
+      <div class="relative">
+        <img
+          src="{{ product.featured_image | img_url: '800x' }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          class="w-full rounded-lg shadow-lg"
+        >
+        {% if product.metafields.custom.rank %}
+          <span class="card-product__badge absolute top-4 right-4 text-lg">
+            Rank: {{ product.metafields.custom.rank }}
+          </span>
+        {% endif %}
+      </div>
+
+      <div class="grid grid-cols-4 gap-4">
+        {% for image in product.images %}
+          <button class="product-thumbnail focus:outline-none" data-image-url="{{ image | img_url: '800x' }}">
+            <img
+              src="{{ image | img_url: '150x' }}"
+              alt="{{ image.alt | escape }}"
+              class="w-full rounded-lg hover:opacity-75 transition-opacity"
+            >
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="space-y-8">
+      <h1 class="text-4xl font-bold">{{ product.title }}</h1>
+      
+      <div class="prose prose-invert">
+        {{ product.description }}
+      </div>
+
+      <div class="bg-gray-800 p-6 rounded-lg space-y-4">
+        {% if product.metafields.custom.champions %}
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Champions Owned</h3>
+            <p class="text-gray-300">{{ product.metafields.custom.champions }}</p>
+          </div>
+        {% endif %}
+
+        {% if product.metafields.custom.skins %}
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Skins Collection</h3>
+            <p class="text-gray-300">{{ product.metafields.custom.skins }}</p>
+          </div>
+        {% endif %}
+
+        {% if product.metafields.custom.blue_essence %}
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Blue Essence</h3>
+            <p class="text-gray-300">{{ product.metafields.custom.blue_essence }}</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex items-center justify-between mb-8">
+          <span class="text-3xl font-bold text-purple-400">{{ product.price | money }}</span>
+          {% if product.compare_at_price > product.price %}
+            <span class="text-xl text-gray-400 line-through">{{ product.compare_at_price | money }}</span>
+          {% endif %}
+        </div>
+
+        <form method="post" action="/cart/add" class="space-y-6">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          <button type="submit" class="w-full button py-4 text-lg">
+            Add to Cart
+          </button>
+        </form>
+
+        <div class="mt-6 text-sm text-gray-400">
+          <p class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+            </svg>
+            Instant delivery after payment
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.product-thumbnail').forEach(button => {
+  button.addEventListener('click', () => {
+    const imageUrl = button.dataset.imageUrl;
+    const mainImage = document.querySelector('.product-image-main');
+    mainImage.src = imageUrl;
+  });
+});
+</script>

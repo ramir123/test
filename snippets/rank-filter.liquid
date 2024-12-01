@@ -1,0 +1,29 @@
+<div class="rank-filter mb-8">
+  <h3 class="text-lg font-bold mb-4">Filter by Rank</h3>
+  <div class="space-y-2">
+    {% for rank in shop.metafields.ranks.available_ranks %}
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" 
+               name="rank" 
+               value="{{ rank }}" 
+               class="form-checkbox text-primary rounded border-gray-600 bg-background"
+               {% if rank == selected_rank %}checked{% endif %}>
+        <span class="ml-2">{{ rank }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.rank-filter input[type="checkbox"]').forEach(checkbox => {
+  checkbox.addEventListener('change', () => {
+    const selectedRanks = Array.from(document.querySelectorAll('.rank-filter input[type="checkbox"]:checked'))
+      .map(input => input.value);
+    
+    document.querySelectorAll('.account-card').forEach(card => {
+      const cardRank = card.dataset.rank;
+      card.style.display = selectedRanks.length === 0 || selectedRanks.includes(cardRank) ? 'block' : 'none';
+    });
+  });
+});
+</script>

@@ -1,0 +1,113 @@
+<header class="fixed w-full top-0 z-50 transition-all duration-300">
+  <div class="bg-[#1a1c23] border-b border-[#2A2D36]">
+    <div class="container mx-auto px-4">
+      <!-- Main Header -->
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="/" class="flex items-center space-x-3">
+          {% if section.settings.logo %}
+            <img src="{{ section.settings.logo | img_url: '200x' }}" 
+                 alt="{{ shop.name }}" 
+                 class="h-8 w-auto"
+                 style="width: {{ section.settings.logo_width }}px">
+          {% else %}
+            <span class="text-2xl font-bold text-white">PlayerMKT</span>
+          {% endif %}
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-6">
+          <div class="relative group">
+            <button class="flex items-center text-gray-300 hover:text-white">
+              Accounts
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="absolute left-0 mt-2 w-48 bg-[#1A1C23] border border-[#2A2D36] rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <a href="/collections/euw" class="block px-4 py-2 text-gray-300 hover:bg-[#2A2D36] hover:text-white">EUW</a>
+              <a href="/collections/na" class="block px-4 py-2 text-gray-300 hover:bg-[#2A2D36] hover:text-white">NA</a>
+              <a href="/collections/eune" class="block px-4 py-2 text-gray-300 hover:bg-[#2A2D36] hover:text-white">EUNE</a>
+            </div>
+          </div>
+          <a href="/pages/boosting" class="text-gray-300 hover:text-white">
+            Boosting <span class="text-[#5865F2]">-40%</span>
+          </a>
+          <a href="/collections/smurfs" class="text-gray-300 hover:text-white">Handmade Smurfs</a>
+          <a href="/pages/coaching" class="text-gray-300 hover:text-white">Coaching</a>
+          <a href="/collections/items" class="text-gray-300 hover:text-white">Items</a>
+          <a href="/blogs/news" class="text-gray-300 hover:text-white">Blog</a>
+        </nav>
+
+        <!-- Desktop Right Side -->
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="#" class="flex items-center text-gray-300 hover:text-white">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+            Live Chat 24/7
+          </a>
+          <a href="#" class="bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-2 rounded-lg transition-colors">
+            Join Discord
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden p-2 text-gray-300 hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      // Scrolling down
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      // Scrolling up
+      header.style.transform = 'translateY(0)';
+      if (currentScroll > 100) {
+        header.querySelector('div').classList.add('bg-opacity-95', 'backdrop-blur-sm');
+      } else {
+        header.querySelector('div').classList.remove('bg-opacity-95', 'backdrop-blur-sm');
+      }
+    }
+
+    lastScroll = currentScroll;
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 100
+    }
+  ]
+}
+{% endschema %}

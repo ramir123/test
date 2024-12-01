@@ -1,0 +1,8 @@
+<div class="flex flex-wrap justify-center gap-2">
+  <span class="text-sm text-gray-400">{{ title | default: 'Popular:' }}</span>
+  {% for tag in tags %}
+    <a href="{{ tag.url }}" class="text-sm text-gray-300 hover:text-white px-3 py-1 rounded-full bg-[#1A1C23]/50 hover:bg-[#2A2D36] transition-colors">
+      {{ tag.label }}
+    </a>
+  {% endfor %}
+</div>

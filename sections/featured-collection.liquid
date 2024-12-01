@@ -1,0 +1,74 @@
+{{ 'section-featured-collection.css' | asset_url | stylesheet_tag }}
+
+<div class="featured-collection page-width">
+  {% if section.settings.title != blank %}
+    <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %} title-wrapper--no-top-margin">
+      <h2 class="title animate-text">
+        {{ section.settings.title | escape }}
+      </h2>
+    </div>
+  {% endif %}
+
+  {%- liquid
+    assign products_to_display = section.settings.collection.all_products_count
+
+    if section.settings.collection.all_products_count > section.settings.products_to_show
+      assign products_to_display = section.settings.products_to_show
+    endif
+  -%}
+
+  <slider-component class="slider-mobile-gutter">
+    <ul class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop slider slider--tablet">
+      {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+        <li class="grid__item slider__slide animate-card">
+          {% render 'card-product',
+            card_product: product,
+            show_quick_add: section.settings.show_quick_add,
+            section_id: section.id
+          %}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </slider-component>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.featured-collection.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured Accounts",
+      "label": "t:sections.featured-collection.settings.title.label"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.featured-collection.settings.collection.label"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 2,
+      "default": 4,
+      "label": "t:sections.featured-collection.settings.products_to_show.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.show_quick_add.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-collection.presets.name"
+    }
+  ]
+}
+{% endschema %}

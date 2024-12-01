@@ -1,0 +1,66 @@
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "❓ Frequently Asked Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How will my account be delivered?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Your account will be delivered instantly via email after purchase.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="py-16 bg-[#0B0E13]">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">{{ section.settings.title }}</h2>
+    
+    <div class="max-w-3xl mx-auto space-y-4">
+      {% for block in section.blocks %}
+        <div class="bg-[#1A1C23] rounded-lg overflow-hidden" {{ block.shopify_attributes }}>
+          <button class="w-full text-left px-6 py-4 flex items-center justify-between hover:bg-[#2A2D36] transition-colors"
+                  onclick="this.parentElement.querySelector('.faq-answer').classList.toggle('hidden')">
+            <span class="font-medium">{{ block.settings.question }}</span>
+            <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-6 py-4 text-gray-400 border-t border-[#2A2D36]">
+            {{ block.settings.answer }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

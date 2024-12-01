@@ -1,0 +1,8 @@
+development:
+  store: playermkt.myshopify.com
+  password: shptka_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  theme_id: "THEME_ID"
+  ignore_files:
+    - "*.hot-update.json"
+    - "node_modules/**/*"
+    - ".git/**/*"

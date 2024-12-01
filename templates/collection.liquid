@@ -1,0 +1,33 @@
+<div class="collection-page py-16">
+  <div class="container mx-auto px-4">
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-slide-up">
+        {{ collection.title }}
+      </h1>
+      {% if collection.description != blank %}
+        <div class="max-w-2xl mx-auto text-gray-400 animate-fade-in">
+          {{ collection.description }}
+        </div>
+      {% endif %}
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <aside class="lg:col-span-1">
+        {% render 'rank-filter' %}
+        {% render 'price-filter' %}
+      </aside>
+
+      <div class="lg:col-span-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {% paginate collection.products by 12 %}
+            {% for product in collection.products %}
+              {% render 'account-card', product: product %}
+            {% endfor %}
+
+            {% render 'pagination', paginate: paginate %}
+          {% endpaginate %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

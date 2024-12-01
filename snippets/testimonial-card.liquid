@@ -1,0 +1,19 @@
+{% assign author = testimonial.author | default: 'Anonymous' %}
+{% assign location = testimonial.location | default: 'Unknown' %}
+{% assign rating = testimonial.rating | default: 5 %}
+
+<div class="testimonial-card bg-[#1A1C23] rounded-lg p-6 border border-gray-800 hover:border-[#9370DB] transition-colors">
+  <div class="flex items-start gap-4 mb-4">
+    <div class="w-12 h-12 rounded-full bg-[#2A2D36] flex items-center justify-center text-xl font-bold">
+      {{ author | slice: 0 | upcase }}
+    </div>
+    <div>
+      <h3 class="font-bold">{{ author }}</h3>
+      <p class="text-gray-400 text-sm">{{ location }}</p>
+    </div>
+    <div class="ml-auto">
+      <div class="text-green-500">★</div>
+    </div>
+  </div>
+  <p class="text-gray-300">{{ testimonial.content }}</p>
+</div>

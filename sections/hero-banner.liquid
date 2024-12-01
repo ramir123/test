@@ -1,0 +1,81 @@
+<div class="relative min-h-[600px] flex items-center overflow-hidden">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0">
+    <img src="https://cdn.shopify.com/s/files/1/0906/7216/9256/files/d02be356652735de40a665b84a6bd75e.jpg?v=1732853013" 
+         alt="Hero Background"
+         class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0B0E13]/90 via-[#0B0E13]/80 to-[#0B0E13]"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(88,101,242,0.1) 0%, transparent 60%)"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="container mx-auto px-4 relative z-10 pt-32">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up">
+        BUY A<br>
+        <span class="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">LEAGUE OF LEGENDS</span><br>
+        ACCOUNT
+      </h1>
+
+      {% render 'hero-search', placeholder: section.settings.search_placeholder %}
+      {% render 'hero-filters', filters: section.settings.filters %}
+
+      <div class="flex flex-wrap justify-center gap-2 mt-8">
+        <span class="text-sm text-gray-400">{{ section.settings.popular_text }}</span>
+        {% for tag in section.settings.popular_tags %}
+          <a href="{{ tag.url }}" class="text-sm text-gray-300 hover:text-white px-3 py-1 rounded-full bg-[#1A1C23]/50 hover:bg-[#2A2D36] transition-colors">
+            {{ tag.label }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search Placeholder",
+      "default": "Search for an account..."
+    },
+    {
+      "type": "text",
+      "id": "popular_text",
+      "label": "Popular Text",
+      "default": "Popular:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "popular_tag",
+      "name": "Popular Tag",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tag Label"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Tag URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "blocks": [
+        {
+          "type": "popular_tag"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

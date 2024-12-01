@@ -1,0 +1,136 @@
+{% assign server_options = "North America, Europe West, Europe Nordic & East, Brazil, Middle East, Latin America North, Latin America South" | split: ", " %}
+{% assign rank_options = "Unranked, Iron, Bronze, Silver, Gold, Platinum, Diamond, Master, Grandmaster, Challenger" | split: ", " %}
+
+<div class="relative min-h-[600px] flex items-center bg-gradient-to-br from-purple-900 to-gray-900 overflow-hidden">
+  <!-- Background Effects -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-[url('{{ 'hero-pattern.png' | asset_url }}')] opacity-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="container mx-auto px-4 relative z-10 pt-32">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 animate-slide-up">
+        BUY A<br>
+        <span class="bg-gradient-to-r from-purple-400 to-purple-600 text-transparent bg-clip-text">LEAGUE OF LEGENDS</span><br>
+        ACCOUNT
+      </h1>
+
+      <!-- Search Bar -->
+      <div class="max-w-2xl mx-auto mb-8">
+        {% render 'search-bar', placeholder: 'Search for an account...' %}
+      </div>
+
+      <!-- Filters -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+        {% render 'filter-dropdown', filter: {
+          type: 'server',
+          label: 'Server',
+          icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>',
+          options: server_options | map: server_option
+        } %}
+
+        {% render 'filter-dropdown', filter: {
+          type: 'rank',
+          label: 'Rank',
+          icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>',
+          options: rank_options | map: rank_option
+        } %}
+
+        {% render 'filter-dropdown', filter: {
+          type: 'price',
+          label: 'Price',
+          icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'
+        } %}
+
+        {% render 'filter-dropdown', filter: {
+          type: 'more',
+          label: 'More Filters',
+          icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>',
+          options: ['With Skins', 'Level 30+', 'Ranked Ready', 'Email Access']
+        } %}
+      </div>
+
+      <!-- Popular Tags -->
+      <div class="flex flex-wrap justify-center gap-2">
+        <span class="text-sm text-gray-400">Popular searches:</span>
+        {% for tag in section.settings.popular_tags %}
+          <a href="{{ tag.url }}" class="text-sm text-gray-300 hover:text-white px-3 py-1 rounded-full bg-[#1A1C23]/50 hover:bg-[#2A2D36] transition-colors">
+            {{ tag.label }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search Placeholder",
+      "default": "Search for an account..."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "popular_tag",
+      "name": "Popular Tag",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tag Label",
+          "default": "Europe West"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Tag URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "blocks": [
+        {
+          "type": "popular_tag",
+          "settings": {
+            "label": "Europe West"
+          }
+        },
+        {
+          "type": "popular_tag",
+          "settings": {
+            "label": "North America"
+          }
+        },
+        {
+          "type": "popular_tag",
+          "settings": {
+            "label": "Handmade"
+          }
+        },
+        {
+          "type": "popular_tag",
+          "settings": {
+            "label": "Iron"
+          }
+        },
+        {
+          "type": "popular_tag",
+          "settings": {
+            "label": "Unranked"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

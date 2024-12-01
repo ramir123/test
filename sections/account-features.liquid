@@ -1,0 +1,81 @@
+{% schema %}
+{
+  "name": "Account Features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Premium Account Features"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Rare Skins"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description",
+          "default": "Exclusive and limited edition skins"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Feature Icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Account Features",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="section-account-features py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 animate-slide-up">
+      {{ section.settings.title }}
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {% for block in section.blocks %}
+        <div class="feature-card animate-fade-in" {{ block.shopify_attributes }}>
+          <div class="card p-8 text-center">
+            {% if block.settings.icon %}
+              <div class="w-20 h-20 mx-auto mb-6">
+                <img src="{{ block.settings.icon | img_url: '120x120' }}" 
+                     alt="{{ block.settings.title }}"
+                     class="w-full h-full object-contain animate-float">
+              </div>
+            {% endif %}
+            
+            <h3 class="text-xl font-bold mb-4">{{ block.settings.title }}</h3>
+            <p class="text-gray-400">{{ block.settings.description }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

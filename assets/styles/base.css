@@ -1,0 +1,45 @@
+:root {
+  --color-primary: #6B21A8;
+  --color-primary-light: #9333EA;
+  --color-background: #18181B;
+  --color-background-secondary: #27272A;
+  --color-text: #FFFFFF;
+  --color-text-secondary: #A1A1AA;
+  --color-accent: #F472B6;
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --font-heading: 'Rajdhani', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

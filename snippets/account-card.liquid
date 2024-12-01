@@ -1,0 +1,70 @@
+<div class="account-card card animate-fade-in" data-rank="{{ product.metafields.custom.rank }}">
+  <div class="relative">
+    <img
+      src="{{ product.featured_image | img_url: '600x' }}"
+      alt="{{ product.title }}"
+      class="w-full h-64 object-cover"
+      loading="lazy"
+    >
+    
+    {% if product.metafields.custom.rank %}
+      <div class="absolute top-4 right-4">
+        <span class="badge animate-pulse">
+          {{ product.metafields.custom.rank }}
+        </span>
+      </div>
+    {% endif %}
+    
+    {% if product.compare_at_price > product.price %}
+      <div class="absolute top-4 left-4">
+        <span class="badge bg-accent">
+          Save {{ product.compare_at_price | minus: product.price | money }}
+        </span>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-4">{{ product.title }}</h3>
+    
+    <div class="space-y-3 mb-6">
+      {% if product.metafields.custom.champions %}
+        <div class="flex items-center text-sm">
+          <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+          </svg>
+          <span>{{ product.metafields.custom.champions }} Champions</span>
+        </div>
+      {% endif %}
+      
+      {% if product.metafields.custom.skins %}
+        <div class="flex items-center text-sm">
+          <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
+          </svg>
+          <span>{{ product.metafields.custom.skins }} Skins</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="flex items-center justify-between">
+      <div class="flex flex-col">
+        <span class="text-2xl font-bold text-primary">
+          {{ product.price | money }}
+        </span>
+        {% if product.compare_at_price > product.price %}
+          <span class="text-sm text-gray-400 line-through">
+            {{ product.compare_at_price | money }}
+          </span>
+        {% endif %}
+      </div>
+      
+      <form method="post" action="/cart/add" class="flex-shrink-0">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="button-primary">
+          Add to Cart
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

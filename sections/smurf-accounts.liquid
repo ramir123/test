@@ -1,0 +1,154 @@
+<div class="bg-[#0B0E13] py-16">
+  <div class="container mx-auto px-4">
+    <!-- Fresh Start Section -->
+    <div class="mb-16">
+      <span class="text-[#5865F2] text-sm font-medium">Fresh Start</span>
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">{{ section.settings.main_title }}</h2>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-xl font-bold mb-4">{{ section.settings.what_title }}</h3>
+          <p class="text-gray-400">{{ section.settings.what_description }}</p>
+          <p class="text-gray-400 mt-4">{{ section.settings.what_additional }}</p>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">{{ section.settings.advantages_title }}</h3>
+          <p class="text-gray-400">{{ section.settings.advantages_description }}</p>
+          <a href="{{ section.settings.cta_link }}" class="inline-block mt-6 bg-[#5865F2] hover:bg-[#4752C4] text-white px-6 py-3 rounded-lg transition-colors">
+            {{ section.settings.cta_text }}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Shop Section -->
+    <div>
+      <span class="text-[#5865F2] text-sm font-medium">Account Shop</span>
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">{{ section.settings.ranked_title }}</h2>
+      <p class="text-gray-400 mb-12 max-w-3xl">{{ section.settings.ranked_description }}</p>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-xl font-bold mb-4">{{ section.settings.buy_title }}</h3>
+          <p class="text-gray-400">{{ section.settings.buy_description }}</p>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">{{ section.settings.friends_title }}</h3>
+          <p class="text-gray-400">{{ section.settings.friends_description }}</p>
+          <a href="{{ section.settings.ranked_cta_link }}" class="inline-block mt-6 bg-[#5865F2] hover:bg-[#4752C4] text-white px-6 py-3 rounded-lg transition-colors">
+            {{ section.settings.ranked_cta_text }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Smurf Accounts",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "LoL Smurf Accounts"
+    },
+    {
+      "type": "text",
+      "id": "what_title",
+      "label": "What Does Smurf Mean Title",
+      "default": "What does Smurf mean in games"
+    },
+    {
+      "type": "textarea",
+      "id": "what_description",
+      "label": "What Does Smurf Mean Description",
+      "default": "A Smurf is a player that use a lower-ranking account to play ranked games against people that are less skilled."
+    },
+    {
+      "type": "textarea",
+      "id": "what_additional",
+      "label": "Additional Information",
+      "default": "Smurf accounts are the perfect solution for that. You don't need to climb a new account all the way up to level 30, to be able to play ranked games. The accounts come with a ready level 30 and enough BE (Blue Essence) to buy your best, favorite champions."
+    },
+    {
+      "type": "text",
+      "id": "advantages_title",
+      "label": "Advantages Title",
+      "default": "Advantages of LoL Smurf Accounts"
+    },
+    {
+      "type": "textarea",
+      "id": "advantages_description",
+      "label": "Advantages Description",
+      "default": "Every smurf account come with a fresh MMR, without any ranked games played. This is your opportunity to climb higher in the ladder. You don't have to worry about low LP gains, if you are skilled enough to maintain a good win ratio, you will end up climbing faster than on your main account."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Buy LoL Smurf Account"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "text",
+      "id": "ranked_title",
+      "label": "Ranked Title",
+      "default": "LoL Ranked Accounts"
+    },
+    {
+      "type": "textarea",
+      "id": "ranked_description",
+      "label": "Ranked Description",
+      "default": "If you want to try yourself on a higher rank, or you have no time to climb at your own, this is where ranked accounts come in handy. You can skip all the grind and go straight to high-elo to compete against better players."
+    },
+    {
+      "type": "text",
+      "id": "buy_title",
+      "label": "Buy Title",
+      "default": "Buy ranked account to smurf"
+    },
+    {
+      "type": "textarea",
+      "id": "buy_description",
+      "label": "Buy Description",
+      "default": "If you wish, you can also buy ranked account to smurf against other players. GameBoost offers you every rank option, so no matter what elo you want to smurf in, with our accounts it's possible."
+    },
+    {
+      "type": "text",
+      "id": "friends_title",
+      "label": "Friends Title",
+      "default": "Play with Friends"
+    },
+    {
+      "type": "textarea",
+      "id": "friends_description",
+      "label": "Friends Description",
+      "default": "If your friends are playing on another server or the difference in rank is too big, you don't have to waste all the time trying to catch up to them or create a new account on a different server. Just buy yourself a lol ranked account with the rank and server of your choice."
+    },
+    {
+      "type": "text",
+      "id": "ranked_cta_text",
+      "label": "Ranked CTA Button Text",
+      "default": "Buy LoL Ranked Account"
+    },
+    {
+      "type": "url",
+      "id": "ranked_cta_link",
+      "label": "Ranked CTA Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Smurf Accounts"
+    }
+  ]
+}
+{% endschema %}

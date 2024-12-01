@@ -1,0 +1,88 @@
+<div class="filter-dropdown relative" data-filter-type="{{ filter.type }}">
+  <button type="button" 
+          class="w-full flex items-center justify-between bg-[#1A1C23] border border-[#2A2D36] rounded-lg px-4 py-2.5 hover:bg-[#2A2D36] transition-colors"
+          data-dropdown-trigger>
+    <div class="flex items-center gap-2">
+      {% if filter.icon %}{{ filter.icon }}{% endif %}
+      <span class="text-gray-300">{{ filter.label }}</span>
+    </div>
+    <svg class="w-4 h-4 transition-transform duration-200" 
+         data-dropdown-arrow
+         fill="none" 
+         stroke="currentColor" 
+         viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+
+  <div class="absolute left-0 right-0 top-full mt-2 bg-[#1A1C23] border border-[#2A2D36] rounded-lg shadow-xl z-50 hidden max-h-[300px] overflow-y-auto"
+       data-dropdown-content>
+    {% case filter.type %}
+      {% when 'server' %}
+        <div class="py-1">
+          {% for option in filter.options %}
+            <button type="button" 
+                    class="w-full text-left px-4 py-2.5 text-gray-300 hover:bg-[#2A2D36] hover:text-white transition-colors flex items-center gap-2"
+                    data-option-value="{{ option.value }}"
+                    data-filter-option>
+              {% if option.icon %}
+                <span class="w-5 h-5 flex-shrink-0">{{ option.icon }}</span>
+              {% endif %}
+              {{ option.label }}
+            </button>
+          {% endfor %}
+        </div>
+      {% when 'rank' %}
+        <div class="py-1">
+          {% for option in filter.options %}
+            <button type="button" 
+                    class="w-full text-left px-4 py-2.5 text-gray-300 hover:bg-[#2A2D36] hover:text-white transition-colors flex items-center gap-2"
+                    data-option-value="{{ option.value }}"
+                    data-filter-option>
+              {% if option.icon %}
+                <span class="w-5 h-5 flex-shrink-0">{{ option.icon }}</span>
+              {% endif %}
+              {{ option.label }}
+            </button>
+          {% endfor %}
+        </div>
+      {% when 'price' %}
+        <div class="p-4">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="relative flex-1">
+              <span class="absolute left-3 top-2 text-gray-400">$</span>
+              <input type="number" 
+                     class="w-full bg-[#2A2D36] border border-[#3A3D46] rounded px-4 pl-7 py-1.5 text-white" 
+                     placeholder="Min"
+                     data-price-min>
+            </div>
+            <span class="text-gray-400">-</span>
+            <div class="relative flex-1">
+              <span class="absolute left-3 top-2 text-gray-400">$</span>
+              <input type="number" 
+                     class="w-full bg-[#2A2D36] border border-[#3A3D46] rounded px-4 pl-7 py-1.5 text-white" 
+                     placeholder="Max"
+                     data-price-max>
+            </div>
+          </div>
+          <input type="range" 
+                 min="0" 
+                 max="1400" 
+                 step="10"
+                 class="w-full"
+                 data-price-slider>
+        </div>
+      {% else %}
+        <div class="py-1">
+          {% for option in filter.options %}
+            <button type="button" 
+                    class="w-full text-left px-4 py-2.5 text-gray-300 hover:bg-[#2A2D36] hover:text-white transition-colors"
+                    data-option-value="{{ option.value }}"
+                    data-filter-option>
+              {{ option.label }}
+            </button>
+          {% endfor %}
+        </div>
+    {% endcase %}
+  </div>
+</div>
